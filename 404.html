@@ -1,77 +1,280 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>404 - Page Not Found</title>
-    <style>
-      :root {
-        --primary-text: #1d1d1f;
-        --secondary-text: #6e6e73;
-        --background-light: #f5f5f7;
-        --card-bg: #ffffff;
-        --accent: #0071e3;
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Mario - 404 World</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Bangers');
+
+    * {
+      position: relative;
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      width: 100vw;
+      overflow: hidden;
+    }
+
+    .container {
+      height: 100vh;
+    }
+
+    .block {
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, 0);
+      height: 80px;
+      width: 80px;
+      background-image: url('https://pa1.narvii.com/6489/524d20cabd4731dffd6453fb707ab1d2b2b11c52_00.gif');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: 1;
+    }
+
+    .mario {
+      position: absolute;
+      width: 78px;
+      height: 68px;
+      background-image: url('https://jakevdp.github.io/images/mario_graphics1.png');
+      background-position-y: -191px;
+      background-position-x: -22px;
+      transition: bottom .3s linear;
+    }
+
+    .number {
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, 1px);
+      height: 80px;
+      width: 80px;
+      text-align: center;
+      font-size: 70px;
+      text-shadow:
+        -3px -3px 0 #000,
+        3px -3px 0 #000,
+        -3px 3px 0 #000,
+        3px 3px 0 #000;
+      font-family: 'Bangers', cursive;
+      animation: moveUp 1.5s linear;
+    }
+
+    @keyframes moveUp {
+      from { transform: translate(-50%, 1px); }
+      to { transform: translate(-50%, -150px); }
+    }
+
+    .hit {
+      animation: blockHit .2s linear;
+    }
+
+    @keyframes blockHit {
+      0% { transform: translate(-50%, 0); }
+      50% { transform: translate(-50%, -20px); };
+      100% { transform: translate(-50%, 0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="container">
+    <div class="block" id="block"></div>
+    <div class="mario" id="mario"></div>
+  </div>
+  <script>
+    const blocks     = [4, 0, 4];
+    const colors     = ['red', 'green', 'blue', 'yellow'];
+    const mario      = document.querySelector("#mario");
+    const block      = document.querySelector("#block");
+    const container  = document.querySelector("#container");
+    const marioSpeed = 5;
+    const moveTime   = 10;
+
+    let blockOn           = 0;
+    let moveMarioInterval = null;
+    let stepsTaken        = 0;
+
+    // for mario's background position
+    const marioPositions = [-22, -219, -414];
+    let bgPositionOn = 0;
+
+    document.addEventListener("DOMContentLoaded", (event) => {
+      resetMario();
+    });
+
+    // Reset Mario to the initial positioning
+    function resetMario() {
+      const blockPos = document.body.clientHeight * 0.35 ;
+      mario.style.bottom = '0px';
+      mario.style.left = '0px';
+      block.style.top = blockPos + 'px';
+      blockOn = 0;
+      resetInterval();
+      setupInitialMovement();
+    }
+
+    // Initial movements mario should be making
+    function setupInitialMovement() {
+      moveMarioInterval = setInterval(() => {
+        moveMario();
+        let underBlock = checkMarioUnderBlock();
+        if (underBlock) {
+          setupJump();
+        }
+      }, moveTime);
+    }
+
+    // Move Mario to the left
+    function moveMario() {
+      let currentPos = parseInt(mario.style.left, 10);
+      mario.style.left = (currentPos + marioSpeed) + 'px';
+
+      // check if should change mario's background position.
+      if (stepsTaken >= 5) {
+        mario.style.backgroundPositionX = marioPositions[bgPositionOn] + 'px';
+        bgPositionOn = 1 - bgPositionOn;
+        stepsTaken = 0;
+      } else {
+        stepsTaken++;
       }
-      body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          Helvetica, Arial, sans-serif;
-        background-color: var(--background-light);
-        color: var(--primary-text);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        margin: 0;
-        text-align: center;
+    }
+
+    // reset any movement interval the interval
+    function resetInterval() {
+      clearInterval(moveMarioInterval);
+      moveMarioInterval = null;
+    }
+
+    // Check if mario is under the prize block
+    function checkMarioUnderBlock() {
+      // get positioning
+      const blockPos = block.getBoundingClientRect();
+      const marioPos = mario.getBoundingClientRect();
+      // check if mario's left side is under the box
+      if (blockPos.left < marioPos.left && blockPos.right > marioPos.left) {
+        return true;
       }
-      .container {
-        max-width: 600px;
-        padding: 40px;
-        background-color: var(--card-bg);
-        border-radius: 18px;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      return false;
+    }
+
+    // Get mario ready for jumping
+    function setupJump() {
+      // reset the interval
+      resetInterval();
+      // mario should be standing still
+      bgPositionOn = 1;
+      mario.style.backgroundPositionX = marioPositions[bgPositionOn] + 'px';
+      // Start the jumping process
+      moveMarioInterval = setInterval(() => {
+        if (blockOn >= blocks.length) {
+          continueMoving();
+        } else {
+          jump();
+          blockOn++;
+        }
+      }, 2000);
+    }
+
+    function jump() {
+      // get how high mario should jump.
+      const jumpHeight = parseInt(block.clientHeight, 10) + parseInt(block.style.top, 10);
+      const bodyHeight = document.body.clientHeight;
+      const marioHeight = parseInt(mario.clientHeight, 10);
+      // Make mario jump!
+      mario.style.bottom = (bodyHeight - jumpHeight - marioHeight) + 'px';
+      mario.style.backgroundPositionX = marioPositions[2] + 'px';
+      // set a timeout for when mario hits the block
+      setTimeout(() => {
+        hitBlock();
+      }, 300);
+      // And once he lands, he should be standing
+      setTimeout(() => {
+        mario.style.backgroundPositionX = marioPositions[bgPositionOn] + 'px';
+      }, 600);
+    }
+
+    // Mario has just hit the block
+    function hitBlock() {
+      // animate the block being hit
+      block.classList.add('hit');
+      setTimeout(() => {
+        block.classList.remove('hit');
+      }, 200);
+
+      // Mario falls down
+      mario.style.bottom = '0px';
+
+      // show number
+      let newNumber = document.createElement('div');
+      newNumber.innerHTML = blocks[blockOn - 1];
+      newNumber.style.top = block.style.top;
+      newNumber.style.color = getRandomColor();
+      newNumber.classList.add('number');
+      container.appendChild(newNumber);
+
+      // remove number after animation
+      setTimeout(() => {
+        container.removeChild(newNumber);
+      }, 1500);
+
+      // ✅ Show "404 Page Not Found" after final block
+      if (blockOn === blocks.length) {
+        setTimeout(() => {
+          let message = document.createElement('div');
+          message.innerText = "404 Page Not Found";
+          message.style.position = 'absolute';
+          message.style.top = '60%';
+          message.style.left = '50%';
+          message.style.transform = 'translate(-50%, -50%)';
+          message.style.fontFamily = "'Bangers', cursive";
+          message.style.fontSize = "64px";
+          message.style.textAlign = "center";
+          message.style.color = "#ff4444";
+          message.style.textShadow = "-2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000";
+          message.style.opacity = 0;
+          message.style.transition = "opacity 1s ease-in-out";
+          message.classList.add("not-found");
+
+          document.body.appendChild(message);
+
+          // Fade in
+          setTimeout(() => {
+            message.style.opacity = 1;
+          }, 100);
+        }, 800); // small delay after third jump
       }
-      h1 {
-        font-size: 5rem;
-        font-weight: 700;
-        margin: 0;
-        color: var(--accent);
+    }
+
+    // Returns a random color for the letters
+    function getRandomColor() {
+      const newColor = Math.floor(Math.random() * 4);
+      return colors[newColor];
+    }
+
+    // stop jumping and have mario move off screen
+    function continueMoving() {
+      // reset the interval
+      resetInterval();
+      // start moving!
+      moveMarioInterval = setInterval(() => {
+        moveMario();
+        const offScreen = checkIfOffScreen();
+        if (offScreen) {
+          resetMario();
+        }
+      }, moveTime);
+    }
+
+    // check if mario has walked off screen
+    function checkIfOffScreen() {
+      const marioLeft = parseInt(mario.style.left, 10);
+      if (marioLeft > document.body.clientWidth) {
+        return true;
       }
-      h2 {
-        font-size: 1.8rem;
-        font-weight: 500;
-        color: var(--primary-text);
-      }
-      p {
-        font-size: 1rem;
-        color: var(--secondary-text);
-        line-height: 1.6;
-      }
-      a {
-        display: inline-block;
-        margin-top: 20px;
-        padding: 10px 25px;
-        font-weight: 600;
-        color: var(--card-bg);
-        background-color: var(--accent);
-        text-decoration: none;
-        border-radius: 50px;
-        transition: background-color 0.3s ease;
-      }
-      a:hover {
-        background-color: #005a9c;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <h1>404</h1>
-      <h2>Oops! Page Not Found</h2>
-      <p>
-        The page you are looking for might have been removed, had its name
-        changed, or is temporarily unavailable.
-      </p>
-      <a href="index.html">Go to Homepage</a>
-    </div>
-  </body>
+      return false;
+    }
+  </script>
+</body>
 </html>
