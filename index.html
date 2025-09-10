@@ -23,6 +23,7 @@
         background-color: var(--background-light);
         color: var(--primary-text);
         line-height: 1.6;
+        font-size: 16px; /* Default desktop font size */
       }
 
       header {
@@ -99,14 +100,14 @@
         transform: translateY(-8px);
         box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
       }
-
+      
       h3 {
         font-size: 1.5rem;
         font-weight: 600;
         margin-top: 0;
         color: var(--primary-text);
       }
-
+      
       .project p {
         color: var(--secondary-text);
       }
@@ -124,51 +125,13 @@
         padding: 25px;
         font-size: 0.9rem;
       }
-
-      /* -------------------------------------------------------------------------- */
-      /* Media Query for Mobile Devices (<= 768px)                                */
-      /* -------------------------------------------------------------------------- */
-      @media (max-width: 768px) {
-        header {
-          padding: 30px 15px;
-        }
-
-        header h1 {
-          font-size: 2rem;
-        }
-
-        header p {
-          font-size: 1rem;
-        }
-
-        .header-links a {
-          margin: 0 10px;
-        }
-
-        section {
-          padding: 40px 15px;
-        }
-
-        h2 {
-          font-size: 1.6rem;
-          margin-bottom: 20px;
-        }
-
-        .project,
-        .certification {
-          padding: 20px;
-          margin-bottom: 25px;
-          border-radius: 12px;
-        }
-
-        h3 {
-          font-size: 1.3rem;
-        }
-
-        footer {
-          padding: 20px;
-          font-size: 0.8rem;
-        }
+      
+      .contact-details a {
+        color: var(--accent);
+      }
+      
+      .contact-details a:hover {
+        color: #005a9c;
       }
 
       /* -------------------------------------------------------------------------- */
@@ -196,7 +159,7 @@
         padding: 0;
         list-style: none;
         display: flex;
-        gap: 80px;
+        gap: 60px;
       }
 
       nav ul li button {
@@ -302,30 +265,243 @@
       nav.before .active-element {
         transform: rotateY(180deg);
       }
+      
+      /* New Contact Section Styles */
+      .contact-details {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 1.1rem;
+      }
+      .contact-details a {
+        display: block;
+        margin-bottom: 8px;
+        color: var(--primary-text);
+        text-decoration: none;
+      }
+      .contact-details a:hover {
+        color: var(--accent);
+      }
+      .contact-form-container {
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 30px;
+        background-color: var(--card-bg);
+        border-radius: 18px;
+        box-shadow: 0 6px 20px var(--shadow);
+      }
+      .contact-form-container input,
+      .contact-form-container textarea {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-sizing: border-box;
+        font-family: inherit;
+        font-size: 1rem;
+      }
+      .contact-form-container textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+      .contact-form-container button {
+        width: 100%;
+        padding: 15px;
+        background-color: var(--accent);
+        color: var(--card-bg);
+        border: none;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      .contact-form-container button:hover {
+        background-color: #005a9c;
+      }
+      
+      /* -------------------------------------------------------------------------- */
+      /* Desktop Styles (Shows full nav with indicator)                             */
+      /* -------------------------------------------------------------------------- */
+      @media (min-width: 769px) {
+        .navbar-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: var(--background-dark);
+          padding: 20px;
+          box-shadow: 0 4px 12px var(--shadow);
+          position: sticky;
+          top: 0;
+          z-index: 1000;
+        }
+        
+        nav {
+          position: relative;
+          z-index: 1;
+        }
+        
+        nav ul {
+          margin: 0;
+          padding: 0;
+          list-style: none;
+          display: flex !important;
+          gap: 60px;
+        }
+        
+        nav ul li button {
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+          border: none;
+          cursor: pointer;
+          background-color: transparent;
+          padding: 0;
+          margin: 0;
+          font-family: "Inter", sans-serif;
+          font-weight: 600;
+          font-size: 16px;
+          line-height: 22px;
+          color: var(--secondary-text);
+          transition: color 0.25s;
+        }
+
+        nav ul li.active button {
+          color: var(--primary-text);
+        }
+
+        nav ul li:not(.active):hover button {
+          color: #807E8C;
+        }
+
+        /* The indicator itself, only visible on desktop */
+        nav .active-element {
+          display: block;
+          --active-element-scale-x: 1;
+          --active-element-scale-y: 1;
+          --active-element-show: 0;
+          --active-element-opacity: 0;
+          --active-element-width: 0px;
+          --active-element-strike-x: 0%;
+          --active-element-mask-position: 0%;
+          position: absolute;
+          left: 0;
+          top: 34px;
+          height: 3px;
+          width: 36px;
+          border-radius: 2px;
+          background-color: var(--accent);
+          opacity: var(--active-element-show);
+        }
+
+        nav .active-element > svg,
+        nav .active-element .strike {
+          position: absolute;
+          right: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          opacity: var(--active-element-opacity);
+          width: var(--active-element-width);
+          mix-blend-mode: multiply;
+        }
+        
+        nav .active-element > svg {
+          display: block;
+          overflow: visible;
+          height: 5px;
+          filter: blur(0.5px) drop-shadow(2px 0px 8px rgba(0, 117, 255, 0.4)) drop-shadow(1px 0px 2px rgba(0, 128, 255, 0.8)) drop-shadow(0px 0px 3px rgba(153, 204, 255, 0.4)) drop-shadow(2px 0px 8px rgba(137, 196, 255, 0.45)) drop-shadow(8px 0px 16px rgba(153, 204, 255, 0.5));
+        }
+
+        nav .active-element .strike {
+          padding: 24px 0;
+          -webkit-mask-image: linear-gradient(
+            to right,
+            transparent calc(0% + var(--active-element-mask-position)),
+            black calc(15% + var(--active-element-mask-position)),
+            black 80%,
+            transparent
+          );
+          mask-image: linear-gradient(
+            to right,
+            transparent calc(0% + var(--active-element-mask-position)),
+            black calc(15% + var(--active-element-mask-position)),
+            black 80%,
+            transparent
+          );
+        }
+
+        nav .active-element .strike svg {
+          display: block;
+          overflow: visible;
+          height: 12px;
+          width: calc(var(--active-element-width) * 2);
+          transform: translate(var(--active-element-strike-x), 30%)
+            scale(var(--active-element-scale-x), var(--active-element-scale-y));
+        }
+
+        nav .active-element .strike svg:last-child {
+          transform: translate(var(--active-element-strike-x), -30%) scale(-1);
+        }
+
+        nav .active-element .strike svg g path:nth-child(2) {
+          filter: blur(2px);
+        }
+
+        nav .active-element .strike svg g path:nth-child(3) {
+          filter: blur(4px);
+        }
+
+        nav.before .active-element {
+          transform: rotateY(180deg);
+        }
+      }
+
+      /* -------------------------------------------------------------------------- */
+      /* Mobile Styles (No nav bar)                                                 */
+      /* -------------------------------------------------------------------------- */
+      @media (max-width: 768px) {
+        .navbar-container {
+          display: none;
+        }
+        
+        body {
+          font-size: 16px;
+        }
+
+        header h1 {
+          font-size: 2.2rem;
+        }
+
+        header p {
+          font-size: 0.9rem;
+        }
+        
+        section {
+          padding: 40px 20px;
+        }
+
+        h2 {
+          font-size: 1.8rem;
+          margin-bottom: 20px;
+        }
+        
+        h3 {
+          font-size: 1.3rem;
+        }
+      }
     </style>
   </head>
   <body>
     <div class="navbar-container">
       <nav>
         <ul>
-          <li class="active">
-            <button>Home</button>
-          </li>
-          <li>
-            <button>About</button>
-          </li>
-          <li>
-            <button>Skills</button>
-          </li>
-          <li>
-            <button>Projects</button>
-          </li>
-          <li>
-            <button>Education</button>
-          </li>
-          <li>
-            <button>Certifications</button>
-          </li>
+          <li class="active"><button>Home</button></li>
+          <li><button>About</button></li>
+          <li><button>Skills</button></li>
+          <li><button>Projects</button></li>
+          <li><button>Education</button></li>
+          <li><button>Certifications</button></li>
+          <li><button>Contact</button></li>
         </ul>
       </nav>
     </div>
@@ -368,12 +544,10 @@
       <h2>Skills & Tech Stack</h2>
       <p><strong>Languages & Core:</strong> C, Python, JavaScript, PHP</p>
       <p>
-        <strong>Frameworks & Libraries:</strong> OpenCV, Matplotlib, Seaborn,
-        NLTK, Pandas, Scikit-learn, Telegram Bots
+        <strong>Frameworks & Libraries:</strong> OpenCV, Matplotlib, Seaborn, Nltk, Pandas, Sklearn, Telegram_Bots
       </p>
       <p>
-        <strong>Cloud & Hosting:</strong> Heroku, Vercel, Koyeb, Google Cloud,
-        InfinityFree, Telegram Cloud
+        <strong>Cloud & Hosting:</strong> Heroku, Vercel, Koyeb, Google Cloud, InfinityFree, Telegram Cloud
       </p>
       <p><strong>Others:</strong> AI Integration, Automation</p>
     </section>
@@ -381,35 +555,35 @@
     <section id="projects">
       <h2>Projects</h2>
       <div class="project">
+        <h3>Dog Breed Detection using CNN</h3>
+        <p>
+          Developed an AI model using Convolutional Neural Networks (CNN) to accurately classify dog breeds from images. This project demonstrates a strong foundation in deep learning, computer vision, and the implementation of neural network architectures.
+        </p>
+      </div>
+      <div class="project">
+        <h3>Air Quality Prediction using Machine Learning</h3>
+        <p>
+          Engineered a data-driven solution to predict air quality indices by applying advanced machine learning models and data analytics. This project showcases proficiency in data preprocessing, feature engineering, and deploying predictive models to solve real-world environmental challenges.
+        </p>
+      </div>
+      <div class="project">
         <h3>Code & File Sharing Platform</h3>
         <p>
-          Created a real-time file and code-sharing application using HTML,
-          JavaScript, and backend scripting. Utilized polling mechanisms and
-          optimized DOM rendering to enable live updates and quick
-          collaboration among college peers. Ensured a lightweight and
-          accessible interface for all users.
+          Created a real-time file and code-sharing application using HTML, JavaScript, and backend scripting. Utilized polling mechanisms and optimized DOM rendering to enable live updates and quick collaboration among college peers. Ensured a lightweight and accessible interface for all users.
         </p>
         <a href="https://dsshare.fwh.is">dsshare.fwh.is</a>
       </div>
       <div class="project">
         <h3>Smart Media Hosting with Telegram Bots</h3>
         <p>
-          Developed a fully functional media hosting and delivery platform using
-          Python and Telegram Bot API. Designed to optimize storage and access
-          for users without relying on traditional cloud infrastructure.
-          Implemented queue management and lightweight automation to ensure
-          efficient media retrieval and uptime.
+          Developed a fully functional media hosting and delivery platform using Python and Telegram Bot API. Designed to optimize storage and access for users without relying on traditional cloud infrastructure. Implemented queue management and lightweight automation to ensure efficient media retrieval and uptime.
         </p>
         <a href="https://kanubomma.free.nf">kanubomma.free.nf</a>
       </div>
       <div class="project">
         <h3>AI Vision Chatbot</h3>
         <p>
-          Built a conversational chatbot that combines natural language
-          processing with image recognition using the Google Gemini API. Enabled
-          users to interact with the bot by sending images or messages, which
-          are processed to generate relevant AI responses. Built with Python and
-          hosted using InfinityFree.
+          Built a conversational chatbot that combines natural language processing with image recognition using the Google Gemini API. Enabled users to interact with the bot by sending images or messages, which are processed to generate relevant AI responses. Built with Python and hosted using InfinityFree.
         </p>
         <a href="https://charanrajkendyala.rf.gd/project1">View Project</a>
       </div>
@@ -430,8 +604,27 @@
       </div>
     </section>
 
+    <section id="contact-me" class="segment-dark">
+      <h2>Contact Me</h2>
+      <p>Interested in my work or just want to connect? Feel free to reach out!</p>
+      <div class="contact-form-container">
+        <form action="mailto:charanrajkendyala@gmail.com" method="POST" enctype="text/plain">
+          <input type="text" name="name" placeholder="Your Name" required />
+          <input type="email" name="email" placeholder="Your Email" required />
+          <textarea name="message" placeholder="Your Message" required></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+      <div class="contact-details">
+        <p><strong>Email:</strong> <a href="mailto:charanrajkendyala@gmail.com">charanrajkendyala@gmail.com</a></p>
+        <p><strong>Phone:</strong> +91 9885851177</p>
+        <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/charan-raj-kendyala" target="_blank">linkedin.com/in/charan-raj-kendyala</a></p>
+        <p><strong>GitHub:</strong> <a href="https://github.com/charantheraj" target="_blank">github.com/charantheraj</a></p>
+      </div>
+    </section>
+
     <footer>
-      &copy; 2025 Kendyala Charan Raj. All rights reserved.
+      <p>&copy; 2025 Kendyala Charan Raj. All rights reserved.</p>
     </footer>
     
     <script src="https://unpkg.co/gsap@3/dist/gsap.min.js"></script>
@@ -441,111 +634,128 @@
       activeElement.classList.add("active-element");
       navElement.appendChild(activeElement);
 
-      const sectionIds = ['home', 'about-me', 'skills', 'projects', 'education', 'certifications'];
+      const sectionIds = ['home', 'about-me', 'skills', 'projects', 'education', 'certifications', 'contact-me'];
 
       const getOffsetLeft = (element) => {
+        if (!element) return 0;
         const elementRect = element.getBoundingClientRect();
+        const navRect = navElement.getBoundingClientRect();
         return (
-          elementRect.left -
-          navElement.getBoundingClientRect().left +
-          (elementRect.width - activeElement.offsetWidth) / 2
+          elementRect.left - navRect.left + (elementRect.width - activeElement.offsetWidth) / 2
         );
       };
 
-      const activeButton = navElement.querySelector("ul li.active button");
+      const updateNavIndicator = (button, oldIndex, newIndex) => {
+        const active = navElement.querySelector("ul li.active");
+        if (active) {
+            active.classList.remove("active");
+        }
+        button.parentElement.classList.add("active");
+        
+        if (window.innerWidth > 768) {
+            const x = getOffsetLeft(button);
+            const direction = newIndex > oldIndex ? "after" : "before";
+            const spacing = Math.abs(x - getOffsetLeft(active));
 
+            navElement.classList.add(direction);
+            gsap.set(activeElement, {
+                rotateY: direction === "before" ? "180deg" : "0deg",
+            });
+
+            gsap.to(activeElement, {
+                keyframes: [{
+                    "--active-element-width": `${spacing > navElement.offsetWidth - 60 ? navElement.offsetWidth - 60 : spacing}px`,
+                    duration: 0.3,
+                    ease: "none",
+                    onStart: () => {
+                        createSVG(activeElement);
+                        gsap.to(activeElement, { "--active-element-opacity": 1, duration: 0.1 });
+                    },
+                }, {
+                    "--active-element-scale-x": "0",
+                    "--active-element-scale-y": ".25",
+                    "--active-element-width": "0px",
+                    duration: 0.3,
+                    onStart: () => {
+                        gsap.to(activeElement, { "--active-element-mask-position": "40%", duration: 0.5 });
+                        gsap.to(activeElement, { "--active-element-opacity": 0, delay: 0.45, duration: 0.25 });
+                    },
+                    onComplete: () => {
+                        activeElement.innerHTML = "";
+                        navElement.classList.remove("before", "after");
+                        activeElement.removeAttribute("style");
+                        gsap.set(activeElement, {
+                            x: getOffsetLeft(button),
+                            "--active-element-show": "1",
+                        });
+                    },
+                }],
+            });
+
+            gsap.to(activeElement, {
+                x,
+                "--active-element-strike-x": "-50%",
+                duration: 0.6,
+                ease: "none",
+            });
+        }
+      };
+
+      // Set initial active button on page load
       document.fonts.ready.then(() => {
-        gsap.set(activeElement, {
-          x: getOffsetLeft(activeButton),
-        });
-        gsap.to(activeElement, {
-          "--active-element-show": "1",
-          duration: 0.2,
-        });
+        const initialButton = navElement.querySelector("ul li.active button");
+        if (initialButton && window.innerWidth > 768) {
+            gsap.set(activeElement, {
+                x: getOffsetLeft(initialButton),
+                opacity: 1,
+            });
+        }
       });
-
-      navElement.querySelectorAll("ul li button").forEach((button, index) => {
-        button.addEventListener("click", () => {
-          const active = navElement.querySelector("ul li.active");
-          const oldIndex = [...active.parentElement.children].indexOf(active);
-
-          if (
-            index === oldIndex ||
-            navElement.classList.contains("before") ||
-            navElement.classList.contains("after")
-          ) {
-            return;
-          }
-
-          const x = getOffsetLeft(button);
-          const direction = index > oldIndex ? "after" : "before";
-          const spacing = Math.abs(x - getOffsetLeft(active));
-
-          navElement.classList.add(direction);
-          active.classList.remove("active");
-          button.parentElement.classList.add("active");
-
-          gsap.set(activeElement, {
-            rotateY: direction === "before" ? "180deg" : "0deg",
+      
+      // Update active state on scroll
+      const observerOptions = {
+          root: null,
+          rootMargin: '0px',
+          threshold: 0.5, // Trigger when 50% of the section is visible
+      };
+      
+      const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                  const targetId = entry.target.id;
+                  const index = sectionIds.indexOf(targetId);
+                  const correspondingButton = navElement.querySelector(`ul li:nth-child(${index + 1}) button`);
+                  if (correspondingButton) {
+                      const active = navElement.querySelector("ul li.active");
+                      const oldIndex = active ? [...active.parentElement.children].indexOf(active) : -1;
+                      updateNavIndicator(correspondingButton, oldIndex, index);
+                  }
+              }
           });
+      }, observerOptions);
 
-          gsap.to(activeElement, {
-            keyframes: [{
-              "--active-element-width": `${spacing > navElement.offsetWidth - 60
-                  ? navElement.offsetWidth - 60
-                  : spacing
-                }px`,
-              duration: 0.3,
-              ease: "none",
-              onStart: () => {
-                createSVG(activeElement);
-                gsap.to(activeElement, {
-                  "--active-element-opacity": 1,
-                  duration: 0.1,
-                });
-              },
-            }, {
-              "--active-element-scale-x": "0",
-              "--active-element-scale-y": ".25",
-              "--active-element-width": "0px",
-              duration: 0.3,
-              onStart: () => {
-                gsap.to(activeElement, {
-                  "--active-element-mask-position": "40%",
-                  duration: 0.5,
-                });
-                gsap.to(activeElement, {
-                  "--active-element-opacity": 0,
-                  delay: 0.45,
-                  duration: 0.25,
-                });
-              },
-              onComplete: () => {
-                activeElement.innerHTML = "";
-                navElement.classList.remove("before", "after");
-                activeElement.removeAttribute("style");
-                gsap.set(activeElement, {
-                  x: getOffsetLeft(button),
-                  "--active-element-show": "1",
-                });
-              },
-            }, ],
+      document.querySelectorAll('section').forEach(section => {
+          observer.observe(section);
+      });
+      const headerElement = document.querySelector('header');
+      if (headerElement) {
+        headerElement.setAttribute('id', 'home');
+        observer.observe(headerElement);
+      }
+      
+      // Handle click events for smooth scrolling
+      const buttons = navElement.querySelectorAll("ul li button");
+      buttons.forEach((button, index) => {
+          button.addEventListener("click", () => {
+              const targetSection = document.getElementById(sectionIds[index]);
+              if (targetSection) {
+                  targetSection.scrollIntoView({ behavior: 'smooth' });
+                  
+                  const active = navElement.querySelector("ul li.active");
+                  const oldIndex = active ? [...active.parentElement.children].indexOf(active) : -1;
+                  updateNavIndicator(button, oldIndex, index);
+              }
           });
-
-          gsap.to(activeElement, {
-            x,
-            "--active-element-strike-x": "-50%",
-            duration: 0.6,
-            ease: "none",
-          });
-          
-          // Scroll to the corresponding section
-          const targetSectionId = sectionIds[index];
-          const targetSection = document.getElementById(targetSectionId);
-          if (targetSection) {
-            targetSection.scrollIntoView({ behavior: 'smooth' });
-          }
-        });
       });
 
       const createSVG = (element) => {
