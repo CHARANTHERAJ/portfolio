@@ -1,213 +1,279 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kendyala Charan Raj | Portfolio</title>
-  <style>
-    :root {
-      --primary: #101820;
-      --accent: #007acc;
-      --light-bg: #fdfdfd;
-      --dark-bg: #e6e6e6;
-      --card-bg: #ffffff;
-      --shadow: rgba(0, 0, 0, 0.1);
-    }
-    .segment-dark {
-      background-color: #e6e6e6;
-    }
-    .segment-light {
-      background-color: #fdfdfd;
-    }
-    section {
-      padding: 60px 30px;
-      max-width: 1000px;
-      margin: auto;
-      border-top: 1px solid #ccc;
-    }
-    body {
-      transition: background-color 0.3s ease, color 0.3s ease;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      background-color: #f0f0f0;
-      color: #333;
-      line-height: 1.6;
-    }
-    header {
-      background-color: var(--primary);
-      color: #fff;
-      padding: 30px 20px;
-      text-align: left;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-    }
-    header h1 {
-      margin: 0;
-      clear: both;
-    }
-    section {
-      padding: 40px 20px;
-      max-width: 900px;
-      margin: auto;
-    }
-    h2 {
-      color: #101820;
-    }
-    .project, .certification {
-      background-color: var(--card-bg);
-      padding: 25px;
-      border-radius: 12px;
-      margin: 30px 0;
-      box-shadow: 0 6px 12px var(--shadow);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .certification img {
-      max-width: 120px;
-      display: block;
-      margin-top: 10px;
-    }
-    footer {
-      background-color: #101820;
-      color: white;
-      text-align: center;
-      padding: 20px;
-    }
-    a {
-      color: #007acc;
-      text-decoration: none;
-    }
-      .project:hover, .certification:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    }
-      header, section, footer {
-      transition: all 0.4s ease-in-out;
-    }
-    h1, h2, h3, p, a {
-      transition: color 0.3s ease, transform 0.3s ease;
-    }
-    h1:hover, h2:hover, h3:hover, p:hover, a:hover {
-      transform: scale(1.02);
-    }
-    a:hover {
-      color: #005a9c;
-    }
-      .project:hover, .certification:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-    }
-
-    h2 {
-      border-left: 5px solid var(--accent);
-      padding-left: 12px;
-    }
-
-    footer {
-      font-size: 14px;
-      letter-spacing: 0.5px;
-    }
-      @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        text-align: center;
-        padding: 20px 10px;
-      }
-
-      header img {
-        margin-bottom: 10px;
-      }
-
-      section {
-        padding: 30px 15px;
-      }
-
-      .project, .certification {
-        padding: 20px;
-      }
-
-      h2 {
-        font-size: 1.4rem;
-      }
-
-      h3 {
-        font-size: 1.2rem;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kendyala Charan Raj | Portfolio</title>
+    <style>
+      :root {
+        --primary-text: #1d1d1f;
+        --secondary-text: #6e6e73;
+        --background-light: #f5f5f7;
+        --background-dark: #e8e8e8;
+        --card-bg: #ffffff;
+        --accent: #0071e3;
+        --shadow: rgba(0, 0, 0, 0.08);
       }
 
       body {
-        font-size: 16px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Helvetica, Arial, sans-serif;
+        margin: 0;
+        background-color: var(--background-light);
+        color: var(--primary-text);
+        line-height: 1.6;
       }
-    }
-  </style>
-</head>
-<body>
-  <header style="display: flex; align-items: center; justify-content: center; gap: 20px; text-align: center; flex-wrap: wrap;">
-    <img src="https://learn.microsoft.com/en-us/media/learn/certification/badges/microsoft-certified-fundamentals-badge.svg" alt="Azure Badge Logo" style="max-width: 140px; height: auto;">
-    <div style="flex: none; text-align: center;">
-      <h1 style="margin: 0;">Kendyala Charan Raj</h1>
-    <p>Machine Learning | Gen-AI | Automation Developer</p>
-    <p>
-      <a href="mailto:charanrajkendyala@gmail.com">charanrajkendyala@gmail.com</a> |
-      <a href="https://github.com/charantheraj">GitHub</a> |
-      <a href="https://linkedin.com/in/charan-raj-kendyala">LinkedIn</a>
-    </p>
-    </div>
-  </header>
 
-  <section class="segment-light">
-    <h2>About Me</h2>
-  <p>
-    I am Kendyala Charan Raj, a self-driven software developer with a passion for emerging technologies like Web3, Artificial Intelligence, and Automation. My technical journey is grounded in building full-stack solutions that are both scalable and resource-efficient. 
-    From AI chatbots with computer vision to decentralized communication tools, I’ve delivered real-world projects that combine innovation with practical utility.
-  </p>
-  <p>
-    With a deep understanding of cloud infrastructure, DevOps pipelines, and modern development stacks, I consistently create systems that are robust, fast, and production-ready. I believe in the power of self-learning and thrive in environments where I can independently explore, build, and optimize cutting-edge solutions.
-  </p>
-</section>
+      header {
+        background-color: var(--card-bg);
+        padding: 50px 20px;
+        text-align: center;
+        box-shadow: 0 4px 12px var(--shadow);
+      }
 
-  <section class="segment-dark">
-    <h2>Skills & Tech Stack</h2>
-    <p><strong>Languages & Core:</strong> C, Python, JavaScript, PHP</p>
-    <p><strong>Frameworks & Libraries:</strong> OpenCV, Matplotlib, Seaborn, NLTK, Pandas, Scikit-learn, Telegram Bots</p>
-    <p><strong>Cloud & Hosting:</strong> Heroku, Vercel, Koyeb, Google Cloud, InfinityFree, Telegram Cloud</p>
-    <p><strong>Others:</strong> AI Integration, Automation</p>
-  </section>
+      header h1 {
+        font-size: 2.8rem;
+        font-weight: 600;
+        margin: 0;
+        color: var(--primary-text);
+      }
 
-  <section class="segment-light">
-    <h2>Projects</h2>
-    <div class="project">
-  <h3>Code & File Sharing Platform</h3>
-  <p>Created a real-time file and code-sharing application using HTML, JavaScript, and backend scripting. Utilized polling mechanisms and optimized DOM rendering to enable live updates and quick collaboration among college peers. Ensured a lightweight and accessible interface for all users.</p>
-      <a href="https://dsshare.fwh.is">dsshare.fwh.is</a>
-    </div>
-    <div class="project">
-  <h3>Smart Media Hosting with Telegram Bots</h3>
-  <p>Developed a fully functional media hosting and delivery platform using Python and Telegram Bot API. Designed to optimize storage and access for users without relying on traditional cloud infrastructure. Implemented queue management and lightweight automation to ensure efficient media retrieval and uptime.</p>
-      <a href="https://kanubomma.free.nf">kanubomma.free.nf</a>
-    </div>
-    <div class="project">
-  <h3>AI Vision Chatbot</h3>
-  <p>Built a conversational chatbot that combines natural language processing with image recognition using the Google Gemini API. Enabled users to interact with the bot by sending images or messages, which are processed to generate relevant AI responses. Built with Python and hosted using InfinityFree.</p>
-      <a href="https://charanrajkendyala.rf.gd/project1">View Project</a>
-    </div>
-  </section>
+      header p {
+        color: var(--secondary-text);
+        font-size: 1.1rem;
+        margin: 10px 0 20px 0;
+      }
 
-  <section class="segment-dark">
-    <h2>Education</h2>
-    <p>B.Tech in CSE-AIML | Malla Reddy Engineering College (2022–2026)</p>
-    <p>Current CGPA: 7.93</p>
-  </section>
+      a {
+        color: var(--accent);
+        text-decoration: none;
+        transition: color 0.2s ease-in-out;
+      }
 
-  <section class="segment-light">
-    <h2>Certifications</h2>
-    <div class="certification">
-      <h3>Microsoft Certified: Azure AI Fundamentals</h3>
-      <p>Issued: May 6, 2025</p>
-      <p><a href="https://verify.certiport.com/mQTb-DwW2">Verify Certificate</a></p>
-      
-    </div>
-  </section>
+      a:hover {
+        color: #005a9c;
+      }
 
-  <footer>
-    &copy; 2025 Kendyala Charan Raj. All rights reserved.
-  </footer>
-</body>
+      .header-links a {
+        font-weight: 500;
+        color: var(--secondary-text);
+        margin: 0 15px;
+        transition: color 0.2s ease-in-out;
+      }
+
+      .header-links a:hover {
+        color: var(--primary-text);
+      }
+
+      section {
+        padding: 80px 30px;
+        max-width: 900px;
+        margin: auto;
+      }
+
+      .segment-dark {
+        background-color: var(--background-dark);
+      }
+
+      h2 {
+        font-size: 2rem;
+        font-weight: 500;
+        margin-bottom: 40px;
+        text-align: center;
+        color: var(--primary-text);
+      }
+
+      .project,
+      .certification {
+        background-color: var(--card-bg);
+        padding: 30px;
+        border-radius: 18px;
+        margin-bottom: 40px;
+        box-shadow: 0 6px 20px var(--shadow);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .project:hover,
+      .certification:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+      }
+
+      h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-top: 0;
+        color: var(--primary-text);
+      }
+
+      .project p {
+        color: var(--secondary-text);
+      }
+
+      .certification img {
+        max-width: 120px;
+        display: block;
+        margin-top: 15px;
+      }
+
+      footer {
+        background-color: #1a1a1a;
+        color: #b0b0b0;
+        text-align: center;
+        padding: 25px;
+        font-size: 0.9rem;
+      }
+
+      /* -------------------------------------------------------------------------- */
+      /* Media Query for Mobile Devices (<= 768px)                                */
+      /* -------------------------------------------------------------------------- */
+      @media (max-width: 768px) {
+        header {
+          padding: 30px 15px;
+        }
+
+        header h1 {
+          font-size: 2rem;
+        }
+
+        header p {
+          font-size: 1rem;
+        }
+
+        .header-links a {
+          margin: 0 10px;
+        }
+
+        section {
+          padding: 40px 15px;
+        }
+
+        h2 {
+          font-size: 1.6rem;
+          margin-bottom: 20px;
+        }
+
+        .project,
+        .certification {
+          padding: 20px;
+          margin-bottom: 25px;
+          border-radius: 12px;
+        }
+
+        h3 {
+          font-size: 1.3rem;
+        }
+
+        footer {
+          padding: 20px;
+          font-size: 0.8rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div style="display: inline-block; text-align: center;">
+        <img
+          src="https://learn.microsoft.com/en-us/media/learn/certification/badges/microsoft-certified-fundamentals-badge.svg"
+          alt="Azure Badge Logo"
+          style="max-width: 140px; height: auto; margin-bottom: 10px;"
+        />
+        <h1>Kendyala Charan Raj</h1>
+        <p>Machine Learning | Gen-AI | Automation Developer</p>
+        <div class="header-links">
+          <a href="mailto:charanrajkendyala@gmail.com">Email</a> |
+          <a href="https://github.com/charantheraj">GitHub</a> |
+          <a href="https://linkedin.com/in/charan-raj-kendyala">LinkedIn</a>
+        </div>
+      </div>
+    </header>
+
+    <section>
+      <h2>About Me</h2>
+      <p>
+        I am Kendyala Charan Raj, a self-driven software developer with a
+        passion for emerging technologies like Web3, Artificial Intelligence,
+        and Automation. My technical journey is grounded in building full-stack
+        solutions that are both scalable and resource-efficient.
+      </p>
+      <p>
+        With a deep understanding of cloud infrastructure, DevOps pipelines, and
+        modern development stacks, I consistently create systems that are
+        robust, fast, and production-ready. I believe in the power of
+        self-learning and thrive in environments where I can independently
+        explore, build, and optimize cutting-edge solutions.
+      </p>
+    </section>
+
+    <section class="segment-dark">
+      <h2>Skills & Tech Stack</h2>
+      <p><strong>Languages & Core:</strong> C, Python, JavaScript, PHP</p>
+      <p>
+        <strong>Frameworks & Libraries:</strong> OpenCV, Matplotlib, Seaborn,
+        NLTK, Pandas, Scikit-learn, Telegram Bots
+      </p>
+      <p>
+        <strong>Cloud & Hosting:</strong> Heroku, Vercel, Koyeb, Google Cloud,
+        InfinityFree, Telegram Cloud
+      </p>
+      <p><strong>Others:</strong> AI Integration, Automation</p>
+    </section>
+
+    <section>
+      <h2>Projects</h2>
+      <div class="project">
+        <h3>Code & File Sharing Platform</h3>
+        <p>
+          Created a real-time file and code-sharing application using HTML,
+          JavaScript, and backend scripting. Utilized polling mechanisms and
+          optimized DOM rendering to enable live updates and quick
+          collaboration among college peers. Ensured a lightweight and
+          accessible interface for all users.
+        </p>
+        <a href="https://dsshare.fwh.is">dsshare.fwh.is</a>
+      </div>
+      <div class="project">
+        <h3>Smart Media Hosting with Telegram Bots</h3>
+        <p>
+          Developed a fully functional media hosting and delivery platform using
+          Python and Telegram Bot API. Designed to optimize storage and access
+          for users without relying on traditional cloud infrastructure.
+          Implemented queue management and lightweight automation to ensure
+          efficient media retrieval and uptime.
+        </p>
+        <a href="https://kanubomma.free.nf">kanubomma.free.nf</a>
+      </div>
+      <div class="project">
+        <h3>AI Vision Chatbot</h3>
+        <p>
+          Built a conversational chatbot that combines natural language
+          processing with image recognition using the Google Gemini API. Enabled
+          users to interact with the bot by sending images or messages, which
+          are processed to generate relevant AI responses. Built with Python and
+          hosted using InfinityFree.
+        </p>
+        <a href="https://charanrajkendyala.rf.gd/project1">View Project</a>
+      </div>
+    </section>
+
+    <section class="segment-dark">
+      <h2>Education</h2>
+      <p>B.Tech in CSE-AIML | Malla Reddy Engineering College (2022–2026)</p>
+      <p>Current CGPA: 7.93</p>
+    </section>
+
+    <section>
+      <h2>Certifications</h2>
+      <div class="certification">
+        <h3>Microsoft Certified: Azure AI Fundamentals</h3>
+        <p>Issued: May 6, 2025</p>
+        <p><a href="https://verify.certiport.com/mQTb-DwW2">Verify Certificate</a></p>
+      </div>
+    </section>
+
+    <footer>
+      &copy; 2025 Kendyala Charan Raj. All rights reserved.
+    </footer>
+  </body>
 </html>
